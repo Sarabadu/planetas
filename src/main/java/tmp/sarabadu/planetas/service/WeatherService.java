@@ -8,9 +8,17 @@ import tmp.sarabadu.planetas.model.SolarSystem;
 @Service
 public class WeatherService {
 
-	public WeatherEnum getWeather(SolarSystem ssys) {
-		// TODO Auto-generated method stub
-		return WeatherEnum.SEQUIA;
+	public WeatherEnum getWeather(SolarSystem solarSystem) {
+		if (sunAndPlanetsAligned(solarSystem)) {
+			return WeatherEnum.SEQUIA;
+		}
+		
+		return WeatherEnum.NORMAL;
+	}
+
+	private boolean sunAndPlanetsAligned(SolarSystem solarSystem) {
+		
+		return solarSystem.getSun().isCollinear(solarSystem.getPlanets());
 	}
 
 }

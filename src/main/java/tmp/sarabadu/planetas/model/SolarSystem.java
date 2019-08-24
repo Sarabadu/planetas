@@ -2,10 +2,17 @@ package tmp.sarabadu.planetas.model;
 
 import java.util.List;
 
-public class SolarSystem {
+import lombok.Data;
 
-	public SolarSystem(Star sun, List<Planet> planetas) {
-		// TODO Auto-generated constructor stub
+@Data
+public class SolarSystem {
+	
+	private SpaceObject sun;
+	private List<Planet> planets;
+	
+	public SolarSystem(SpaceObject sun, List<Planet> planets) {
+		this.sun = sun;
+		this.planets = planets;
 	}
 
 }
