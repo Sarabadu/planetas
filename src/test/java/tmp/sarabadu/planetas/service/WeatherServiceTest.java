@@ -87,5 +87,89 @@ public class WeatherServiceTest {
 		
 		
 	}
+	
+	@Test
+	public void test_only_planets_aligned() {
+		/**
+		 * busco una orbita adecuada para que 
+		 * un planeta este a 45 grados, otro a 90 y otro a 135
+		 * si el de 90 grados esta a una distacia de 2 
+		 * 
+		 * los otros 2 tienen que estar a una distacia de h**2 = 2**2 + 2**2
+		 * por lo que h = sqr(8)
+		 */
+		
+		SpaceObject sun = new Star(0.,0.);
+		
+		
+		
+		Planet planet1 = new Planet(sun,135,Math.sqrt(8));
+		Planet planet2 = new Planet(sun,90,2);
+		Planet planet3 = new Planet(sun,45,Math.sqrt(8));
+		
+		
+		
+		List<Planet> planetas = new ArrayList<Planet>();
+		planetas.add(planet1);
+		planetas.add(planet2);
+		planetas.add(planet3);
+		
+		SolarSystem ssys = new SolarSystem(sun,planetas);
+		
+		assertEquals(WeatherEnum.OPTIMO, serv.getWeather(ssys));
+		
+		
+	}
+	
+	@Test
+	public void test_sun_inside() {
+		/**
+		 * se prueba con angulos donde seguro el sol debe estan dentro del triangulo
+		 */
+		
+		SpaceObject sun = new Star(0.,0.);
+		
+		
+		
+		Planet planet1 = new Planet(sun,0,500);
+		Planet planet2 = new Planet(sun,90,2000);
+		Planet planet3 = new Planet(sun,180,1500);
+		
+		
+		
+		List<Planet> planetas = new ArrayList<Planet>();
+		planetas.add(planet1);
+		planetas.add(planet2);
+		planetas.add(planet3);
+		
+		SolarSystem ssys = new SolarSystem(sun,planetas);
+		
+		assertEquals(WeatherEnum.LLUVIA, serv.getWeather(ssys));
+		
+		
+	}
+	
+	@Test
+	public void test_sun_not_inside() {
+	
+		SpaceObject sun = new Star(0.,0.);
+		
+		Planet planet1 = new Planet(sun,0,500);
+		Planet planet2 = new Planet(sun,90,2000);
+		Planet planet3 = new Planet(sun,179,1500);
+		
+		
+		
+		List<Planet> planetas = new ArrayList<Planet>();
+		planetas.add(planet1);
+		planetas.add(planet2);
+		planetas.add(planet3);
+		
+		SolarSystem ssys = new SolarSystem(sun,planetas);
+		
+		assertEquals(WeatherEnum.NORMAL, serv.getWeather(ssys));
+		
+		
+	}
 
 }

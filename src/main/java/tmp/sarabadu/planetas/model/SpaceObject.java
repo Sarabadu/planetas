@@ -3,15 +3,14 @@ package tmp.sarabadu.planetas.model;
 import java.util.Iterator;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 public class SpaceObject {
-	Logger	log = LoggerFactory.getLogger(SpaceObject.class);
+	
 	
 	//tolerancia asumida por punto flotante
 	final double THRESHOLD = .00000000000001;
@@ -36,6 +35,7 @@ public class SpaceObject {
 		Double x3 = spaceObject2.x;
 		Double y3 = spaceObject2.y;
 		
+		log.info("comparacion collineares punto1({},{}), punto2({},{}), punto3({},{}) ",x1,y1,x2,y2,x3,y3);
 		
 		
 		return Math.abs(
@@ -51,10 +51,12 @@ public class SpaceObject {
 
 	public boolean isCollinear(List<? extends SpaceObject> spaceObjects) {
 		
+		SpaceObject head = spaceObjects.get(0);
+		List<? extends SpaceObject> tail =spaceObjects.subList(1, spaceObjects.size());
 		
-		SpaceObject head = spaceObjects.remove(0);
+
 		boolean isCollinear = true;
-		Iterator<? extends SpaceObject> iterator = spaceObjects.iterator();
+		Iterator<? extends SpaceObject> iterator = tail.iterator();
 		
 		while (iterator.hasNext() && isCollinear) {
 			SpaceObject curr = (SpaceObject) iterator.next();
@@ -63,6 +65,27 @@ public class SpaceObject {
 		
 		return isCollinear;
 		
+	}
+
+	public boolean isInsideArea(SpaceObject so1, SpaceObject so2, SpaceObject so3) {
+		Double areaT = area(so1.x,so1.y,so2.x,so2.y,so3.x,so3.y);
+		
+		Double area1 = area(this.x,this.y,so2.x,so2.y,so3.x,so3.y);
+		Double area2 = area(so1.x,so1.y,this.x,this.y,so3.x,so3.y);
+		Double area3 = area(so1.x,so1.y,so2.x,so2.y,this.x,this.y);
+		
+		Double area123 = area1 + area2 + area3;
+		
+		boolean isGreater =  area123 > areaT -THRESHOLD;
+		
+		
+		
+		return !isGreater;
+	}
+
+	private Double area(Double x1, Double y1, Double x2, Double y2, Double x3, Double y3) {
+		
+		return Math.abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
 	}
 
 }

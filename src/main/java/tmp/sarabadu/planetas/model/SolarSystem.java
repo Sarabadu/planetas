@@ -11,8 +11,8 @@ public class SolarSystem {
 	private List<Planet> planets;
 	
 	public SolarSystem(SpaceObject sun, List<Planet> planets) {
-		this.sun = sun;
-		this.planets = planets;
+		this.setPlanets(planets);
+		this.setSun(sun);
 	}
 
 }
