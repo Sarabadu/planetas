@@ -35,7 +35,7 @@ public class SpaceObject {
 		Double x3 = spaceObject2.x;
 		Double y3 = spaceObject2.y;
 		
-		log.info("comparacion collineares punto1({},{}), punto2({},{}), punto3({},{}) ",x1,y1,x2,y2,x3,y3);
+		logger.info("comparacion collineares punto1({},{}), punto2({},{}), punto3({},{}) ",x1,y1,x2,y2,x3,y3);
 		
 		
 		return Math.abs(

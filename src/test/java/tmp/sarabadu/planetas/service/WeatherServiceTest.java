@@ -45,9 +45,9 @@ public class WeatherServiceTest {
 		
 		
 		//los planetas con un mismo angulo estaran alineados con respecto al sol 
-		Planet planet1 = new Planet(sun,0,500);
-		Planet planet2 = new Planet(sun,0,1000);
-		Planet planet3 = new Planet(sun,0,2000);
+		Planet planet1 = new Planet(sun,0,500,0);
+		Planet planet2 = new Planet(sun,0,1000,0);
+		Planet planet3 = new Planet(sun,0,2000,0);
 		
 		List<Planet> planetas = new ArrayList<Planet>();
 		planetas.add(planet1);
@@ -70,9 +70,9 @@ public class WeatherServiceTest {
 		
 		
 		
-		Planet planet1 = new Planet(sun,0,500);
-		Planet planet2 = new Planet(sun,0,1000);
-		Planet planet3 = new Planet(sun,1,2000);
+		Planet planet1 = new Planet(sun,0,500,0);
+		Planet planet2 = new Planet(sun,0,1000,0);
+		Planet planet3 = new Planet(sun,1,2000,0);
 		
 		
 		
@@ -103,9 +103,9 @@ public class WeatherServiceTest {
 		
 		
 		
-		Planet planet1 = new Planet(sun,135,Math.sqrt(8));
-		Planet planet2 = new Planet(sun,90,2);
-		Planet planet3 = new Planet(sun,45,Math.sqrt(8));
+		Planet planet1 = new Planet(sun,135,Math.sqrt(8),0);
+		Planet planet2 = new Planet(sun,90,2,0);
+		Planet planet3 = new Planet(sun,45,Math.sqrt(8),0);
 		
 		
 		
@@ -131,9 +131,9 @@ public class WeatherServiceTest {
 		
 		
 		
-		Planet planet1 = new Planet(sun,0,500);
-		Planet planet2 = new Planet(sun,90,2000);
-		Planet planet3 = new Planet(sun,180,1500);
+		Planet planet1 = new Planet(sun,0,500,0);
+		Planet planet2 = new Planet(sun,90,2000,0);
+		Planet planet3 = new Planet(sun,180,1500,0);
 		
 		
 		
@@ -154,9 +154,9 @@ public class WeatherServiceTest {
 	
 		SpaceObject sun = new Star(0.,0.);
 		
-		Planet planet1 = new Planet(sun,0,500);
-		Planet planet2 = new Planet(sun,90,2000);
-		Planet planet3 = new Planet(sun,179,1500);
+		Planet planet1 = new Planet(sun,0,500,0);
+		Planet planet2 = new Planet(sun,90,2000,0);
+		Planet planet3 = new Planet(sun,179,1500,0);
 		
 		
 		
