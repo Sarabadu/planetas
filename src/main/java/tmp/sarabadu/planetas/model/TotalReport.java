@@ -10,22 +10,19 @@ import tmp.sarabadu.planetas.enums.WeatherEnum;
 
 @Data
 public class TotalReport {
-	
-	private Map<WeatherEnum ,List<List<DayReport>>> periods;
 
-	
+	private Map<WeatherEnum, List<List<DayReport>>> periods;
+
 	private Long maxLluviaDay;
-	private Double  maxLluviaIndex;
+	private Double maxLluviaIndex;
 
 	public TotalReport(WeatherEnum[] weatherEnums) {
 		super();
 		this.periods = new EnumMap<>(WeatherEnum.class);
-		
-		
+
 		for (WeatherEnum weatherEnum : weatherEnums) {
 			this.periods.put(weatherEnum, new ArrayList<>());
 		}
 	}
 
 }
-

@@ -11,7 +11,7 @@ public class PlanetasApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		
+
 	}
 
 }

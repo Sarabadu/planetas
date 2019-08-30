@@ -15,24 +15,24 @@ public class WeatherService {
 		if (sunAndPlanetsAligned(solarSystem)) {
 			return WeatherEnum.SEQUIA;
 		}
-		
+
 		if (planetsAligned(solarSystem)) {
 			return WeatherEnum.OPTIMO;
 		}
-		
+
 		if (sunInsidePlanetsTriangle(solarSystem)) {
 			return WeatherEnum.LLUVIA;
 		}
-		
+
 		return WeatherEnum.NORMAL;
 	}
-	
+
 	public Double getLluviaIndex(SolarSystem solarSystem) {
 		if (getWeather(solarSystem).equals(WeatherEnum.LLUVIA)) {
 			Planet p1 = solarSystem.getPlanets().get(0);
 			Planet p2 = solarSystem.getPlanets().get(1);
 			Planet p3 = solarSystem.getPlanets().get(2);
-			
+
 			return p1.distance(p2) + p2.distance(p3) + p3.distance(p1);
 		}
 		return 0.;
@@ -40,19 +40,20 @@ public class WeatherService {
 	}
 
 	private boolean sunInsidePlanetsTriangle(SolarSystem solarSystem) {
-		
-		return solarSystem.getSun().isInsideArea(solarSystem.getPlanets().get(0),solarSystem.getPlanets().get(1),solarSystem.getPlanets().get(2));
+
+		return solarSystem.getSun().isInsideArea(solarSystem.getPlanets().get(0), solarSystem.getPlanets().get(1),
+				solarSystem.getPlanets().get(2));
 	}
 
 	private boolean planetsAligned(SolarSystem solarSystem) {
 		Planet head = solarSystem.getPlanets().get(0);
-		List<Planet> planetas =solarSystem.getPlanets().subList(1, solarSystem.getPlanets().size());
-		
+		List<Planet> planetas = solarSystem.getPlanets().subList(1, solarSystem.getPlanets().size());
+
 		return head.isCollinear(planetas);
 	}
 
 	private boolean sunAndPlanetsAligned(SolarSystem solarSystem) {
-		
+
 		return solarSystem.getSun().isCollinear(solarSystem.getPlanets());
 	}
 

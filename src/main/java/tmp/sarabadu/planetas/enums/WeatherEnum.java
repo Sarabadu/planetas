@@ -1,9 +1,6 @@
 package tmp.sarabadu.planetas.enums;
 
 public enum WeatherEnum {
-	SEQUIA,
-	LLUVIA,
-	OPTIMO,
-	NORMAL
+	SEQUIA, LLUVIA, OPTIMO, NORMAL
 
 }

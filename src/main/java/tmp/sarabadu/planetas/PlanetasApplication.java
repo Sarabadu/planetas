@@ -13,15 +13,15 @@ import tmp.sarabadu.planetas.model.TotalReport;
 
 @Slf4j
 @SpringBootApplication
-public class PlanetasApplication  {
+public class PlanetasApplication {
 
 	@Autowired
 	InitJob initJob;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(PlanetasApplication.class, args);
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		TotalReport report = initJob.init();
