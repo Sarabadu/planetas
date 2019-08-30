@@ -1,7 +1,6 @@
 package tmp.sarabadu.planetas.model;
 
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 import lombok.Data;

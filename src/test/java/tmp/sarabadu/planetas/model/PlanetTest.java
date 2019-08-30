@@ -1,12 +1,10 @@
 package tmp.sarabadu.planetas.model;
 
-import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertThat;
-//import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.lessThan;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

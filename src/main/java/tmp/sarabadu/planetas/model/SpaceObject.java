@@ -3,24 +3,18 @@ package tmp.sarabadu.planetas.model;
 import java.util.Iterator;
 import java.util.List;
 
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.AccessLevel;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @Data
 public class SpaceObject {
 	
 	
-	//tolerancia asumida por punto flotante
-	@ToString.Exclude
-	private final double THRESHOLD = .0000000001;
+
+	private static final double THRESHOLD = .0000000001;
 	
-	Double x,y;
+	protected Double x;
+	protected Double y;
 	
 	public SpaceObject() {
 		super();
@@ -62,7 +56,7 @@ public class SpaceObject {
 		Iterator<? extends SpaceObject> iterator = tail.iterator();
 		
 		while (iterator.hasNext() && isCollinear) {
-			SpaceObject curr = (SpaceObject) iterator.next();
+			SpaceObject curr =  iterator.next();
 			isCollinear = this.isCollinear(head, curr);
 		}
 		

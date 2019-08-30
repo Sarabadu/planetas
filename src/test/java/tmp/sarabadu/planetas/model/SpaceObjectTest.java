@@ -3,8 +3,8 @@
  */
 package tmp.sarabadu.planetas.model;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;

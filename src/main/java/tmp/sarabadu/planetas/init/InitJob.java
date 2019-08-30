@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 
 import tmp.sarabadu.planetas.enums.WeatherEnum;
 import tmp.sarabadu.planetas.model.DayReport;
-import tmp.sarabadu.planetas.model.PeriodsReport;
 import tmp.sarabadu.planetas.model.Planet;
 import tmp.sarabadu.planetas.model.SolarSystem;
 import tmp.sarabadu.planetas.model.SpaceObject;
 import tmp.sarabadu.planetas.model.Star;
 import tmp.sarabadu.planetas.model.TotalReport;
+import tmp.sarabadu.planetas.repository.DayReportRepository;
 import tmp.sarabadu.planetas.service.WeatherService;
 
 
@@ -26,6 +26,8 @@ public class InitJob {
 	private WeatherService weatherServ;
 	private Integer yearsQty;
 	private Integer daysPerYear;
+	
+	DayReportRepository dayRepo;
 	
 		
 	public InitJob(@Autowired WeatherService weatherServ, 
@@ -51,6 +53,8 @@ public class InitJob {
 		
 		List<DayReport> repotList = generateDailyReport(solarSys);
 	
+		dayRepo.saveAll(repotList);
+		
 		TotalReport totalReport = new TotalReport(WeatherEnum.values());
 		DayReport lastReport = null;
 				
@@ -88,7 +92,7 @@ public class InitJob {
 	private List<DayReport> generateDailyReport(SolarSystem solarSys) {
 		
 		return Stream.iterate(solarSys, p -> p.advance(1))
-									  .limit(yearsQty * daysPerYear)
+									  .limit(Long.valueOf(yearsQty) * Long.valueOf(daysPerYear))
 									  .map(s2 ->  DayReport.builder()
 												  .weather(weatherServ.getWeather(s2))
 												  .rainIndex(weatherServ.getLluviaIndex(s2))

@@ -1,11 +1,11 @@
 package tmp.sarabadu.planetas.model;
 
-import org.hibernate.type.TrueFalseType;
-
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
+@EqualsAndHashCode(callSuper=true)
 @ToString(callSuper=true)
 public class Planet extends SpaceObject{
 	private int angle;
@@ -23,8 +23,9 @@ public class Planet extends SpaceObject{
 	}
 	
 	public Planet(SpaceObject parentStar, int initialAngle, Double distanceFromParent,int moves) {
-		this.x = parentStar.x + distanceFromParent * Math.cos(Math.toRadians( initialAngle));
-		this.y = parentStar.y + distanceFromParent * Math.sin(Math.toRadians( initialAngle));
+		
+		this.x = parentStar.getX() + distanceFromParent * Math.cos(Math.toRadians( initialAngle));
+		this.y = parentStar.getY() + distanceFromParent * Math.sin(Math.toRadians( initialAngle));
 		this.parentStar = parentStar;
 		this.distanceFromParent = distanceFromParent;
 		this.moves = moves;
@@ -32,10 +33,7 @@ public class Planet extends SpaceObject{
 	}
 	
 	public Planet advance(int days) {
-	
-		/*if (newAngle < 0) {
-			newAngle 
-		}*/
+
 		
 		return new Planet(this.parentStar,newAngle(days),this.distanceFromParent,this.moves);
 	}
