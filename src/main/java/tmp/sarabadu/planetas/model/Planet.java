@@ -1,11 +1,19 @@
 package tmp.sarabadu.planetas.model;
 
+import org.hibernate.type.TrueFalseType;
+
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString(callSuper=true)
 public class Planet extends SpaceObject{
 	private int angle;
+	
+	@ToString.Exclude
 	private int moves;
+	
+	@ToString.Exclude
 	private SpaceObject parentStar;
 	private Double distanceFromParent;
 	

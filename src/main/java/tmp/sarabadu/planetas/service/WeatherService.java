@@ -26,6 +26,18 @@ public class WeatherService {
 		
 		return WeatherEnum.NORMAL;
 	}
+	
+	public Double getLluviaIndex(SolarSystem solarSystem) {
+		if (getWeather(solarSystem).equals(WeatherEnum.LLUVIA)) {
+			Planet p1 = solarSystem.getPlanets().get(0);
+			Planet p2 = solarSystem.getPlanets().get(1);
+			Planet p3 = solarSystem.getPlanets().get(2);
+			
+			return p1.distance(p2) + p2.distance(p3) + p3.distance(p1);
+		}
+		return 0.;
+
+	}
 
 	private boolean sunInsidePlanetsTriangle(SolarSystem solarSystem) {
 		

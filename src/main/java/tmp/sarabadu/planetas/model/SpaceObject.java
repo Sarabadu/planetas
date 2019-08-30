@@ -5,6 +5,10 @@ import java.util.List;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.AccessLevel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -13,7 +17,8 @@ public class SpaceObject {
 	
 	
 	//tolerancia asumida por punto flotante
-	final double THRESHOLD = .00000000000001;
+	@ToString.Exclude
+	private final double THRESHOLD = .0000000001;
 	
 	Double x,y;
 	
@@ -34,8 +39,6 @@ public class SpaceObject {
 		Double y2 = spaceObject1.y;
 		Double x3 = spaceObject2.x;
 		Double y3 = spaceObject2.y;
-		
-		logger.info("comparacion collineares punto1({},{}), punto2({},{}), punto3({},{}) ",x1,y1,x2,y2,x3,y3);
 		
 		
 		return Math.abs(
@@ -86,6 +89,18 @@ public class SpaceObject {
 	private Double area(Double x1, Double y1, Double x2, Double y2, Double x3, Double y3) {
 		
 		return Math.abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
+	}
+	
+	public Double distance(SpaceObject so) {
+		Double x1 = this.x;
+		Double y1 = this.y;
+		Double x2 = so.x;
+		Double y2 = so.y;
+		
+		Double cat1 = (x1-x2) * (x1-x2);
+		Double cat2 = (y1-y2) * (y1-y2);
+		
+		return Math.sqrt(cat1+cat2);
 	}
 
 }
